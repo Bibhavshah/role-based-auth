@@ -1,7 +1,7 @@
-import bcrypt from "bcrypt";
-import User from "../models/User"; 
+const bcrypt = require("bcryptjs");
+const User = require("../models/User");
 
-export const createSuperuser = async () => {
+exports.createSuperuser = async () => {
   const existingSuperuser = await User.findOne({ role: "Superuser" });
   if (!existingSuperuser) {
     const hashedPassword = await bcrypt.hash("supersecurepassword", 10); 
